@@ -96,7 +96,7 @@ namespace Notification.Wpf.Controls
 
             string overlayWindowName = "ToastWindow";
             if (overlayWindow != null)
-                if (overlayWindow.Name == overlayWindowName)
+                if (overlayWindow.Title == overlayWindowName)
                     currentWindow = overlayWindow;
             try
             {
