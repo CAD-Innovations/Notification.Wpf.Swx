@@ -15,6 +15,8 @@ namespace Notification.Wpf.Controls
 {
     public class NotificationArea : Control
     {
+        private Window _overlayWindow = null;
+
         #region CollapseProgressAuto : bool - Progress bar will automatically collapsed if items count more that max items
 
         /// <summary>Progress bar will automatically collapsed if items count more that max items</summary>
@@ -174,7 +176,7 @@ namespace Notification.Wpf.Controls
             catch (OperationCanceledException)
             { }
             if (!notification.IsClosing)
-                notification.Close();
+                notification.Close(_overlayWindow);
         }
 
         /// <summary>
@@ -189,8 +191,8 @@ namespace Notification.Wpf.Controls
             if (!IsLoaded)
                 return;
 
-            var w = Window.GetWindow(this);
-            var x = PresentationSource.FromVisual(w);
+            _overlayWindow = Window.GetWindow(this);
+            var x = PresentationSource.FromVisual(_overlayWindow);
             if (x == null)
                 return;
             lock (_items)
@@ -213,7 +215,7 @@ namespace Notification.Wpf.Controls
                             }
                         }
 
-                    //_items.OfType<Notification>().Where(i=>i.DataContext is not NotificationProgress).First(i => !i.IsClosing).Close();
+                    //_items.OfType<Notification>().Where(i=>i.DataContext is not NotificationProgress).First(i => !i.IsClosing).Close(_overlayWindow);
                 }
             }
 
@@ -231,7 +233,7 @@ namespace Notification.Wpf.Controls
             await Task.Delay((TimeSpan)expirationTime);
 
 #endif
-            notification.Close();
+            notification.Close(_overlayWindow);
 #if NET40
             });
 #endif

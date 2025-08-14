@@ -79,7 +79,7 @@ namespace Notification.Wpf.Controls
         }
 
         //TODO: .NET40
-        public async void Close()
+        public async void Close(Window overlayWindow = null)
         {
             if (IsClosing)
             {
@@ -92,7 +92,18 @@ namespace Notification.Wpf.Controls
             await Task.Delay(_closingAnimationTime);
             RaiseEvent(new RoutedEventArgs(NotificationClosedEvent));
 
-            var currentWindow = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.Title.Equals("ToastWindow"));
+            Window currentWindow = null;
+
+            string overlayWindowName = "ToastWindow";
+            if (overlayWindow != null)
+                if (overlayWindow.Name == overlayWindowName)
+                    currentWindow = overlayWindow;
+            try
+            {
+                if (currentWindow == null && Application.Current != null)
+                    currentWindow = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.Title.Equals(overlayWindowName));
+            }
+            catch (Exception) { }
             if (currentWindow == null) return;
             var notificationCount = VisualTreeHelperExtensions.GetActiveNotificationCount(currentWindow);
 
