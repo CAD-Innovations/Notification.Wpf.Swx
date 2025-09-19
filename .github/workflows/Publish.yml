@@ -17,6 +17,10 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 8.0.x
+
+      - name: Update the Version Number
+        run: |
+          (Get-Content Notification.Wpf\Notification.Wpf.csproj) -Replace '<Version>*.{7}</Version>', '<Version>${{ vars.StableVersion }}.0</Version>' | Set-Content Notification.Wpf\Notification.Wpf.csproj
         
       - name: Building
         run: dotnet build Notification.Wpf\Notification.Wpf.csproj -c Release
