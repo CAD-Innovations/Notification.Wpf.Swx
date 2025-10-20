@@ -1,4 +1,4 @@
-name: Publish NuGet.org
+﻿name: Publish NuGet.org
 
 on:
   push:
@@ -6,6 +6,9 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: read
+      id-token: write  # enable GitHub OIDC token issuance for this job
     runs-on: windows-latest
     name: Update package
 
@@ -35,7 +38,7 @@ jobs:
       #     dotnet nuget push "**/*.nupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }} 
       #     dotnet nuget push "**/*.snupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }}
 
-      - name: NuGet login (OIDC ? temp API key)
+      - name: NuGet login (OIDC → temp API key)
         uses: NuGet/login@v1
         id: login
         with:
