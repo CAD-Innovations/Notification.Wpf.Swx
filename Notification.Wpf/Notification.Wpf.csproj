@@ -32,6 +32,7 @@
     <PackageTags>Toast Notifications WPF</PackageTags>
     <PackageReleaseNotes>.net8 support</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <AssemblyName>Notification.Wpf.Swx</AssemblyName>
   </PropertyGroup>
 
 

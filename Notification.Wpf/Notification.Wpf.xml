@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Notification.Wpf</name>
+        <name>Notification.Wpf.Swx</name>
     </assembly>
     <members>
         <member name="M:Notification.Wpf.Base.Interfaces.Base.IButtonMessageManager.ShowFilePopUpMessage(System.String,System.Boolean,System.Boolean,System.Nullable{System.TimeSpan},System.String,Notification.Wpf.Base.Interfaces.Options.ICustomizedOptions,Notification.Wpf.Classes.NotificationImage,System.Boolean)">
