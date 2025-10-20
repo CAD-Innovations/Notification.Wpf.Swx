@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Notification.Wpf</name>
+        <name>Notification.Wpf.Swx</name>
     </assembly>
     <members>
         <member name="M:Notification.Wpf.Base.Interfaces.Base.IButtonMessageManager.ShowFilePopUpMessage(System.String,System.Boolean,System.Boolean,System.Nullable{System.TimeSpan},System.String,Notification.Wpf.Base.Interfaces.Options.ICustomizedOptions,Notification.Wpf.Classes.NotificationImage,System.Boolean)">
@@ -370,6 +370,13 @@
         <member name="P:Notification.Wpf.NotificationsOverlayWindow.CollapseProgressAutoIfMoreMessages">
             <summary>Need collapse notification if count more that maximum</summary>
         </member>
+        <member name="M:Notification.Wpf.NotificationsOverlayWindow.NotificationsOverlayWindow_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            hide window from taskbar
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:Notification.Wpf.NotificationsOverlayWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -700,14 +707,17 @@
         <member name="P:Notification.Wpf.Controls.Notification.XbtnVisibility">
             <summary>X Button visibility</summary>
         </member>
+        <member name="M:Notification.Wpf.Converters.ColorAlphaConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
         <member name="T:Notification.Wpf.Combine">
-            <summary>Конвертер, последовательно комбинирующий действия двух других конвертеров</summary>
+            <summary>Êîíâåðòåð, ïîñëåäîâàòåëüíî êîìáèíèðóþùèé äåéñòâèÿ äâóõ äðóãèõ êîíâåðòåðîâ</summary>
         </member>
         <member name="P:Notification.Wpf.Combine.First">
-            <summary>Первый применяемый конвертер</summary>
+            <summary>Ïåðâûé ïðèìåíÿåìûé êîíâåðòåð</summary>
         </member>
         <member name="P:Notification.Wpf.Combine.Then">
-            <summary>Второй применяемый конвертер</summary>
+            <summary>Âòîðîé ïðèìåíÿåìûé êîíâåðòåð</summary>
         </member>
         <member name="M:Notification.Wpf.DoubleValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
             <inheritdoc />
@@ -792,7 +802,7 @@
         <member name="P:Notifications.Wpf.Classes.OperationTimer.BaseWaitingMessage">
             <summary> Base waiting message, will show when calculation </summary>
         </member>
-        <member name="F:Notifications.Wpf.Classes.OperationTimer.Watch">
+        <member name="P:Notifications.Wpf.Classes.OperationTimer.Watch">
             <summary> timer </summary>
         </member>
         <member name="F:Notifications.Wpf.Classes.OperationTimer.LastSpan">
@@ -1758,6 +1768,36 @@
         </member>
         <member name="M:System.Windows.Forms.Taskbar.Show">
             <summary>Shows the taskbar.</summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

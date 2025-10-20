@@ -17,6 +17,10 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 8.0.x
+
+      - name: Update the Version Number
+        run: |
+          (Get-Content Notification.Wpf\Notification.Wpf.csproj) -Replace '<Version>*.{7}</Version>', '<Version>${{ vars.STABLEVERSION }}.0</Version>' | Set-Content Notification.Wpf\Notification.Wpf.csproj
         
       - name: Building
         run: dotnet build Notification.Wpf\Notification.Wpf.csproj -c Release
@@ -26,12 +30,22 @@ jobs:
           dotnet build Notification.Wpf/Notification.Wpf.csproj -c Release
           dotnet pack Notification.Wpf/Notification.Wpf.csproj -c Release
 
-      - name: Publish GitHub
-        run: |
-          dotnet nuget push "**/*.nupkg" --skip-duplicate --source https://nuget.pkg.github.com/Platonenkov/index.json -k ${{secrets.GITHUB_TOKEN}}
-          dotnet nuget push "**/*.snupkg" --skip-duplicate --source https://nuget.pkg.github.com/Platonenkov/index.json -k ${{secrets.GITHUB_TOKEN}}
+      # - name: Publish NuGet
+      #   run: |
+      #     dotnet nuget push "**/*.nupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }} 
+      #     dotnet nuget push "**/*.snupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }}
 
-      - name: Publish NuGet
+      - name: NuGet login (OIDC ? temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: push to NuGet
+        shell: pwsh
         run: |
-          dotnet nuget push "**/*.nupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGETAPIKEY }} 
-          dotnet nuget push "**/*.snupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGETAPIKEY }}
+          Get-ChildItem artifacts/package/release -Filter *.nupkg | ForEach-Object {
+            dotnet nuget push $_.FullName `
+              --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" `
+              --source https://api.nuget.org/v3/index.json
+          }
