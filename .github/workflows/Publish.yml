@@ -47,8 +47,5 @@ jobs:
       - name: push to NuGet
         shell: pwsh
         run: |
-          Get-ChildItem artifacts/package/release -Filter *.nupkg | ForEach-Object {
-            dotnet nuget push $_.FullName `
-              --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" `
-              --source https://api.nuget.org/v3/index.json
-          }
+          dotnet nuget push "**/*.nupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
+          dotnet nuget push "**/*.snupkg" --skip-duplicate -s https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
