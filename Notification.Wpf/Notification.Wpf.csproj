@@ -21,16 +21,16 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>This project will help you take notification window like in windows</Description>
+    <Description>Toast notification library with support for use in class libraries</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/Platonenkov/Notification.Wpf</PackageProjectUrl>
-    <Copyright>https://github.com/Platonenkov</Copyright>
-    <Authors>Platonenkov</Authors>
-    <Company>https://github.com/Platonenkov</Company>
+    <PackageProjectUrl>https://cadinnovations.ca/</PackageProjectUrl>
+    <Copyright>CAD Innovtions</Copyright>
+    <Authors>CADInnovtions</Authors>
+    <Company>CAD Innovtions</Company>
     <PackageIcon>icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/Platonenkov/Notification.Wpf</RepositoryUrl>
+    <RepositoryUrl>https://github.com/CAD-Innovations/Notification.Wpf.Swx</RepositoryUrl>
     <PackageTags>Toast Notifications WPF</PackageTags>
-    <PackageReleaseNotes>.net8 support</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix to handle null Application.Current when used in a class library</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <AssemblyName>Notification.Wpf.Swx</AssemblyName>
   </PropertyGroup>
