@@ -30,7 +30,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/CAD-Innovations/Notification.Wpf.Swx</RepositoryUrl>
     <PackageTags>Toast Notifications WPF</PackageTags>
-    <PackageReleaseNotes>Fix to handle null Application.Current when used in a class library</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix cross thread errors on notification close by adding Dispatcher.Invoke</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <AssemblyName>Notification.Wpf.Swx</AssemblyName>
   </PropertyGroup>

@@ -88,16 +88,31 @@ namespace Notification.Wpf.Controls
 
             IsClosing = true;
 
-            RaiseEvent(new RoutedEventArgs(NotificationCloseInvokedEvent));
+            this.Dispatcher.Invoke(() =>
+            {
+                RaiseEvent(new RoutedEventArgs(NotificationCloseInvokedEvent));
+            });
+
             await Task.Delay(_closingAnimationTime);
-            RaiseEvent(new RoutedEventArgs(NotificationClosedEvent));
+
+            this.Dispatcher.Invoke(() =>
+            {
+                RaiseEvent(new RoutedEventArgs(NotificationClosedEvent));
+            });
 
             Window currentWindow = null;
 
             string overlayWindowName = "ToastWindow";
             if (overlayWindow != null)
-                if (overlayWindow.Title == overlayWindowName)
+            {
+                string windowTitle = "";
+                this.Dispatcher.Invoke(() =>
+                {
+                    windowTitle = overlayWindow.Title;
+                });
+                if (windowTitle == overlayWindowName)
                     currentWindow = overlayWindow;
+            }
             try
             {
                 if (currentWindow == null && Application.Current != null)
@@ -105,13 +120,20 @@ namespace Notification.Wpf.Controls
             }
             catch (Exception) { }
             if (currentWindow == null) return;
-            var notificationCount = VisualTreeHelperExtensions.GetActiveNotificationCount(currentWindow);
+
+            int notificationCount = 0;
+            this.Dispatcher.Invoke(() =>
+            {
+                notificationCount = VisualTreeHelperExtensions.GetActiveNotificationCount(currentWindow);
+            });
 
             if (notificationCount == 0)
-                currentWindow.Close();
-
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    currentWindow.Close();
+                });
+            }
         }
-
-
     }
 }
